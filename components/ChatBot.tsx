@@ -8,12 +8,7 @@ type ChatHistory = {
 
 export default function ChatBot() {
 	const [input, setInput] = useState("");
-	const [chatHistory, setChatHistory] = useState<ChatHistory[]>([
-		{
-			message: "Hello There! Let's talk about the weather. Do you have any questions? ",
-			sender: "start",
-		},
-	]);
+	const [chatHistory, setChatHistory] = useState<ChatHistory[]>([]);
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
@@ -50,6 +45,15 @@ export default function ChatBot() {
 			<input type="checkbox" />
 			<div className="collapse-title text-xl text-center mb-4 font-medium">ChatGPT</div>
 			<div className="collapse-content text-sm">
+				<div className={`chat chat-start mb-4`}>
+					<div className="chat-bubble">
+						<p>{"Hello There! Let's talk about the weather. Do you have any questions? "}</p>
+					</div>
+				</div>
+
+				{/* This div is required for UI to not misbehave on chat-end */}
+				<div className={`chat chat-end mb-4 hidden`}></div>
+
 				{chatHistory.slice(-5).map((chat, index) => (
 					<div key={index} className={`chat chat-${chat.sender} mb-4`}>
 						<div className="chat-bubble">
