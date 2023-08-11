@@ -12,7 +12,6 @@ export default function ChatBot() {
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
-		console.log(chatHistory);
 
 		try {
 			const result = await fetch("/api/chat", {
@@ -23,13 +22,12 @@ export default function ChatBot() {
 				body: JSON.stringify({ input }),
 			});
 
-			const { response } = await result.json();
+			const { completion } = await result.json();
 			setChatHistory((chatHistory) => [
 				...chatHistory,
 				{ message: input, sender: "end" },
-				{ message: response, sender: "start" },
+				{ message: completion, sender: "start" },
 			]);
-			console.log(chatHistory);
 		} catch (error) {
 			console.error(error);
 			setChatHistory([
@@ -38,6 +36,8 @@ export default function ChatBot() {
 				{ message: "Sorry, I don't understand that yet.", sender: "start" },
 			]);
 		}
+
+		setInput("");
 	};
 
 	return (
@@ -67,7 +67,8 @@ export default function ChatBot() {
 							type="text"
 							id="input"
 							value={input}
-							className="input my-2 input-bordered w-full"
+							placeholder="Type something..."
+							className="input my-2 input-bordered w-full text-sm"
 							onChange={(e) => setInput(e.target.value)}
 						/>
 						<input type="submit" hidden />

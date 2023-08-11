@@ -41,12 +41,13 @@ export default function Weather() {
 			return data;
 		};
 		fetchWeather().then((weather) => {
+			console.log(weather);
 			setWeather(weather);
 		});
 	}, [lat, long]);
 
 	return (
-		<div className="card bordered w-60 glass ml-10 mt-5">
+		<div className="card bordered glass">
 			{weather.weather ? (
 				<div className="card-body">
 					<div className="flex items-center card-title">
@@ -58,9 +59,14 @@ export default function Weather() {
 						/>
 						<p className="text-sm">{weather.weather[0].description}</p>
 					</div>
-					<p>
+					<p className="mb-2">
 						<span className="font-bold text-3xl">{Math.round((weather.main.temp - 273.15) * 100) / 100}</span>
 						<sup className="text-base">°C</sup>
+					</p>
+					<p>
+						Feels like{" "}
+						<span className="font-bold text-xl">{Math.round((weather.main.feels_like - 273.15) * 100) / 100}</span>
+						<sup className="text-sm">°C</sup>
 					</p>
 				</div>
 			) : (
@@ -72,6 +78,10 @@ export default function Weather() {
 					<p>
 						<span className="font-bold text-3xl">0</span>
 						<sup className="text-base">°C</sup>
+					</p>
+					<p>
+						Feels like <span className="font-bold text-xl">0</span>
+						<sup className="text-sm">°C</sup>
 					</p>
 				</div>
 			)}

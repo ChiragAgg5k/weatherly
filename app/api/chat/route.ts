@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { OpenAIApi, Configuration } from "openai";
 
 const configuration = new Configuration({
-	apiKey: process.env.OPENAI_API_KEY,
+	apiKey: env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -21,7 +21,9 @@ export async function POST(request: NextRequest) {
 			prompt: `${input}`,
 		});
 
-		return NextResponse.json(completion);
+		return NextResponse.json({
+			completion: completion.data.choices[0].text,
+		});
 	} catch (error) {
 		console.error(error);
 		return NextResponse.error();

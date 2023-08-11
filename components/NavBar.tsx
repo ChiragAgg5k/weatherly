@@ -21,9 +21,9 @@ export default function NavBar() {
 			<div className="flex-none mr-2">
 				{theme === "business" ? (
 					<button
-						data-toggle-theme="business,pastel"
+						data-toggle-theme="business,autumn"
 						onClick={() => {
-							setTheme("pastel");
+							setTheme("autumn");
 						}}
 					>
 						<input
@@ -32,7 +32,7 @@ export default function NavBar() {
 							// @ts-ignore
 							checked={theme === "pastel"}
 							onChange={() => {
-								setTheme("pastel");
+								setTheme("autumn");
 							}}
 						/>
 					</button>
