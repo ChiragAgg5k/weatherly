@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
 	const long = request.nextUrl.searchParams.get("long");
 
 	const response = await fetch(
-		`api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${env.OPEN_WEATHER_API_KEY}`
+		`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${env.OPEN_WEATHER_API_KEY}`
 	);
 	const data = await response.json();
 	return NextResponse.json(data);
