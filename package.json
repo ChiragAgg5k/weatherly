@@ -9,16 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "20.4.9",
+    "@types/node": "20.4.10",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "ai": "^2.1.33",
     "autoprefixer": "10.4.14",
     "cookies-next": "^2.1.2",
-    "eslint": "8.46.0",
+    "eslint": "8.47.0",
     "eslint-config-next": "13.4.13",
     "next": "13.4.13",
-    "openai": "^3.3.0",
     "openai-edge": "^1.2.2",
     "plotly.js": "^2.25.2",
     "postcss": "8.4.27",
