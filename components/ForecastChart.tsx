@@ -10,7 +10,14 @@ type Forecast = {
 // @ts-ignore
 const Plot = dynamic(() => import("react-plotly.js"), {
 	ssr: false,
-	loading: () => <p className="flex items-center justify-center">Loading...</p>,
+	loading: () => (
+		<div className="flex items-center justify-center h-full">
+			<div className="flex items-center">
+				<span className="loading loading-bars mr-2"></span>
+				<p>Loading...</p>
+			</div>
+		</div>
+	),
 });
 
 export default function ForecastChart({ lat, long }: { lat: number | undefined; long: number | undefined }) {
@@ -40,13 +47,11 @@ export default function ForecastChart({ lat, long }: { lat: number | undefined; 
 		});
 	}, [lat, long]);
 
-	console.log(forecast);
-
 	return (
 		<div className="card bordered glass col-span-2">
-			<div className="card-body w-full p-0 overflow-hidden">
+			<div className="card-body w-full p-0 overflow-auto">
 				<Plot
-					className="w-full"
+					className="w-full h-full"
 					data={[
 						{
 							type: "bar",
@@ -63,6 +68,7 @@ export default function ForecastChart({ lat, long }: { lat: number | undefined; 
 							name: "Feels Like",
 						},
 					]}
+					config={{ responsive: true }}
 					layout={{
 						margin: {
 							l: 50,
@@ -76,11 +82,21 @@ export default function ForecastChart({ lat, long }: { lat: number | undefined; 
 							zeroline: false,
 							showticklabels: false,
 						},
-
+						legend: {
+							orientation: "h",
+							yanchor: "bottom",
+							y: 1.02,
+							xanchor: "right",
+							x: 1,
+						},
 						yaxis: {
 							showgrid: true,
 							zeroline: false,
 							showticklabels: true,
+							range: [
+								Math.min(...forecast.map((forecast) => forecast.feels_like)) - 3,
+								Math.max(...forecast.map((forecast) => forecast.feels_like)) + 3,
+							],
 						},
 						paper_bgcolor: "rgba(0,0,0,0)",
 						plot_bgcolor: "rgba(0,0,0,0)",
