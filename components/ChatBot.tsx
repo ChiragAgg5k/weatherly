@@ -5,9 +5,9 @@ export default function ChatBot() {
 	const { messages, input, handleInputChange, handleSubmit } = useChat();
 
 	return (
-		<div className="collapse bg-base-200 absolute bottom-0 right-8 w-96">
+		<div className="collapse absolute bottom-0 right-0 z-50 w-full bg-base-200 sm:right-8 sm:w-96">
 			<input type="checkbox" />
-			<div className="collapse-title text-xl text-center mb-4 font-medium">ChatGPT</div>
+			<div className="collapse-title mb-4 text-center text-xl font-medium">ChatGPT</div>
 			<div className="collapse-content text-sm">
 				<div className={`chat chat-start mb-4`}>
 					<div className="chat-bubble">
@@ -31,7 +31,7 @@ export default function ChatBot() {
 							type="text"
 							id="input"
 							placeholder="Type something..."
-							className="input my-2 input-bordered w-full text-sm"
+							className="input input-bordered my-2 w-full text-sm"
 							value={input}
 							onChange={handleInputChange}
 						/>

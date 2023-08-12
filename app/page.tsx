@@ -32,7 +32,7 @@ export default function Home() {
 		<main className="">
 			<ChatBot />
 
-			<div className="grid auto-rows-[192px] grid-cols-1 sm:grid-cols-3 gap-4 m-8">
+			<div className="m-8 grid auto-rows-[192px] grid-cols-1 gap-4 sm:grid-cols-3">
 				<Weather lat={lat} long={long} />
 				<ForecastChart lat={lat} long={long} />
 			</div>

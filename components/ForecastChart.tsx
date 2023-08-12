@@ -11,7 +11,7 @@ type Forecast = {
 const Plot = dynamic(() => import("react-plotly.js"), {
 	ssr: false,
 	loading: () => (
-		<div className="flex items-center justify-center h-full">
+		<div className="flex h-full items-center justify-center">
 			<div className="flex items-center">
 				<span className="loading loading-bars mr-2"></span>
 				<p>Loading...</p>
@@ -48,10 +48,10 @@ export default function ForecastChart({ lat, long }: { lat: number | undefined; 
 	}, [lat, long]);
 
 	return (
-		<div className="card bordered glass col-span-2">
-			<div className="card-body w-full p-0 overflow-auto">
+		<div className="bordered card glass col-span-2">
+			<div className="card-body w-full overflow-auto p-0">
 				<Plot
-					className="w-full h-full"
+					className="h-full w-full"
 					data={[
 						{
 							type: "bar",
@@ -68,7 +68,7 @@ export default function ForecastChart({ lat, long }: { lat: number | undefined; 
 							name: "Feels Like",
 						},
 					]}
-					config={{ responsive: true }}
+					config={{ responsive: true, displayModeBar: false }}
 					layout={{
 						margin: {
 							l: 50,
