@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Weatherly
 
-## Getting Started
+Weatherly is a smart weather app with the power of ChatGPT. It has a dashboard showing current weather report, 10 days weather forecast in form of graph and a lot more weather data along with a chatbot to answer all of your weather related queries and provide insights about the weather.
 
-First, run the development server:
+## Installation
+
+You can directly use the app from [here](https://weatherly.vercel.app/).
+
+To build the app locally, make sure you have [NPM](https://nodejs.org/en/) installed. Then follow the steps below:
+
+- Clone the repository
+
+```bash
+git clone 
+cd weatherly
+```
+
+- Install dependencies
+
+```bash
+npm install
+```
+
+- Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vercel AI SDK](https://vercel.com/blog/introducing-the-vercel-ai-sdk)
+- [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5)
+- [OpenWeatherMap API](https://openweathermap.org/api)
+- [Plotly.js](https://plotly.com/javascript/)
+- [DaisyUI](https://daisyui.com/)
 
-## Learn More
+## Why?
 
-To learn more about Next.js, take a look at the following resources:
+This project is part of a quest provided by [Quine.sh](https://quine.sh/). The quest is to build a project using the [ChatGPT](https://vercel.com/blog/introducing-the-vercel-ai-sdk) and [Plotly.js](https://plotly.com/javascript/). I decided to build a weather app which can utilize these tools to enhance boring weather data provided by other weather apps.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
