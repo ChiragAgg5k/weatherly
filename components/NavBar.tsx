@@ -20,31 +20,30 @@ export default function NavBar() {
 			</div>
 			<div className="flex-none mr-2">
 				{theme === "business" ? (
-					<button
-						data-toggle-theme="business,autumn"
-						onClick={() => {
-							setTheme("autumn");
-						}}
-					>
+					<button data-set-theme="autumn">
 						<input
 							type="checkbox"
 							className="toggle"
 							// @ts-ignore
-							checked={theme === "pastel"}
-							onChange={() => {
-								setTheme("autumn");
-							}}
+							checked={theme === "autumn"}
+							onChange={
+								// @ts-ignore
+								() => setTheme("autumn")
+							}
 						/>
 					</button>
 				) : (
-					<button
-						data-toggle-theme="business"
-						data-act-class="ACTIVECLASS"
-						onClick={() => {
-							setTheme("business");
-						}}
-					>
-						<input type="checkbox" className="toggle" checked />
+					<button data-set-theme="business">
+						<input
+							type="checkbox"
+							className="toggle"
+							// @ts-ignore
+							checked={theme === "autumn"}
+							onChange={
+								// @ts-ignore
+								() => setTheme("business")
+							}
+						/>
 					</button>
 				)}
 			</div>
