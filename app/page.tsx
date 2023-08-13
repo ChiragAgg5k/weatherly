@@ -5,10 +5,13 @@ import ForecastChart from "@/components/ForecastChart";
 import Weather from "@/components/Weather";
 import { useEffect, useState } from "react";
 import { getCookie, setCookie } from "cookies-next";
+import { WeatherData } from "./types/weather";
 
 export default function Home() {
 	const [lat, setLat] = useState<number | undefined>(0);
 	const [long, setLong] = useState<number | undefined>(0);
+
+	const [weather, setWeather] = useState<WeatherData | undefined>(undefined);
 
 	useEffect(() => {
 		if (getCookie("lat") && getCookie("long")) {
@@ -28,12 +31,30 @@ export default function Home() {
 		});
 	}, []);
 
+	useEffect(() => {
+		if (!lat || !long) return;
+
+		const fetchWeather = async () => {
+			const response = await fetch(`api/weather?lat=${lat}&long=${long}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			const data = await response.json();
+			return data;
+		};
+		fetchWeather().then((weather) => {
+			setWeather(weather);
+		});
+	}, [lat, long]);
+
 	return (
 		<main className="">
-			<ChatBot />
+			<ChatBot weather={weather} />
 
 			<div className="m-8 grid auto-rows-[192px] grid-cols-1 gap-4 sm:grid-cols-3">
-				<Weather lat={lat} long={long} />
+				<Weather weather={weather} />
 				<ForecastChart lat={lat} long={long} />
 			</div>
 		</main>

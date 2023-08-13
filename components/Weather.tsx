@@ -1,30 +1,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { WeatherData } from "@/app/types/weather";
 
-export default function Weather({ lat, long }: { lat: number | undefined; long: number | undefined }) {
-	const [weather, setWeather] = useState<any>({});
-
-	useEffect(() => {
-		if (!lat || !long) return;
-
-		const fetchWeather = async () => {
-			const response = await fetch(`api/weather?lat=${lat}&long=${long}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			const data = await response.json();
-			return data;
-		};
-		fetchWeather().then((weather) => {
-			setWeather(weather);
-		});
-	}, [lat, long]);
-
+export default function Weather({ weather }: { weather: WeatherData | undefined }) {
 	return (
 		<div className="bordered card glass">
-			{weather.weather ? (
+			{weather ? (
 				<div className="card-body">
 					<div className="card-title flex items-center">
 						<Image
