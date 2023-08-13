@@ -4,7 +4,7 @@ import { WeatherData } from "@/app/types/weather";
 
 export default function Weather({ weather }: { weather: WeatherData | undefined }) {
 	return (
-		<div className="bordered card glass">
+		<div className="bordered card glass mb-4 sm:mb-0">
 			{weather ? (
 				<div className="card-body">
 					<div className="card-title flex items-center">

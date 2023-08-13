@@ -53,7 +53,7 @@ export default function Home() {
 		<main className="">
 			<ChatBot weather={weather} />
 
-			<div className="m-8 grid auto-rows-[192px] grid-cols-1 gap-4 sm:grid-cols-3">
+			<div className="m-8 grid auto-rows-[192px] grid-cols-1 sm:grid-cols-3 sm:gap-4">
 				<Weather weather={weather} />
 				<ForecastChart lat={lat} long={long} />
 			</div>
