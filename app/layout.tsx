@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" suppressHydrationWarning={true}>
-			<body className={`${inter.className} min-h-screen`} suppressHydrationWarning={true}>
+			<body className={`${inter.className} h-[100dvh]`} suppressHydrationWarning={true}>
 				<NavBar />
 				{children}
 			</body>

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { WeatherData } from "@/app/types/weather";
 
@@ -27,19 +26,13 @@ export default function Weather({ weather }: { weather: WeatherData | undefined 
 					</p>
 				</div>
 			) : (
-				<div className="card-body">
-					<div className="card-title flex items-center">
-						<span className="loading loading-bars loading-lg"></span>
-						<p className="text-sm">Loading...</p>
+				<div className="card-body w-full overflow-auto p-0">
+					<div className="flex h-full items-center justify-center">
+						<div className="flex items-center">
+							<span className="loading loading-bars mr-2"></span>
+							<p>Loading...</p>
+						</div>
 					</div>
-					<p>
-						<span className="text-3xl font-bold">0</span>
-						<sup className="text-base">°C</sup>
-					</p>
-					<p>
-						Feels like <span className="text-xl font-bold">0</span>
-						<sup className="text-sm">°C</sup>
-					</p>
 				</div>
 			)}
 		</div>

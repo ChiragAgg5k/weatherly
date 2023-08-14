@@ -13,17 +13,19 @@ export default function ChatBot({ weather }: { weather: any }) {
 	});
 
 	return (
-		<div className="collapse absolute bottom-0 right-0 z-50 w-full bg-base-200 sm:right-8 sm:w-96">
+		<div className="collapse fixed bottom-0 right-0 z-50 w-full bg-base-200 sm:right-8 sm:w-96">
 			<input type="checkbox" />
 			<div className="collapse-title mb-4 text-center text-xl font-medium">ChatGPT</div>
 			<div className="collapse-content text-sm">
-				{messages.slice(-5).map((chat, index) => (
-					<div key={index} className={`chat ${chat.role === "user" ? "chat-end" : "chat-start"} mb-4`}>
-						<div className="chat-bubble">
-							<p>{chat.content}</p>
+				<div className="max-h-[60dvh] overflow-y-auto">
+					{messages.map((chat, index) => (
+						<div key={index} className={`chat ${chat.role === "user" ? "chat-end" : "chat-start"} mb-4`}>
+							<div className="chat-bubble">
+								<p>{chat.content}</p>
+							</div>
 						</div>
-					</div>
-				))}
+					))}
+				</div>
 				<div>
 					<form onSubmit={handleSubmit}>
 						<input

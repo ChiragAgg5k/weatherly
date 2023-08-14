@@ -54,3 +54,24 @@ export type WeatherData = {
 	name: string;
 	cod: number;
 };
+
+export type Forecast = {
+	temp: number;
+	feels_like: number;
+	time: string;
+};
+
+export type OtherForecast = {
+	time: string;
+	temp_min: number;
+	temp_max: number;
+	humidity: number;
+	pressure: number;
+};
+
+export type WindForecast = {
+	speed: number;
+	deg: number;
+	gust: number;
+	time: string;
+};

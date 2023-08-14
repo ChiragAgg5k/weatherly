@@ -20,35 +20,9 @@ const Plot = dynamic(() => import("react-plotly.js"), {
 	),
 });
 
-export default function ForecastChart({ lat, long }: { lat: number | undefined; long: number | undefined }) {
-	const [forecast, setForecast] = useState<Forecast[]>([]);
-
-	useEffect(() => {
-		if (!lat || !long) return;
-
-		const fetchWeather = async () => {
-			const response = await fetch(`api/forecast?lat=${lat}&long=${long}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			const data = await response.json();
-			return data;
-		};
-		fetchWeather().then((weather) => {
-			for (const weatherObj of weather.list) {
-				const temp = weatherObj.main.temp - 273.15;
-				const time = weatherObj.dt_txt;
-				const feels_like = weatherObj.main.feels_like - 273.15;
-
-				setForecast((forecast) => [...forecast, { temp, time, feels_like }]);
-			}
-		});
-	}, [lat, long]);
-
+export default function ForecastChart({ forecast }: { forecast: Forecast[] }) {
 	return (
-		<div className="bordered card glass col-span-2">
+		<div className="bordered card glass col-span-2 mb-4 sm:mb-0">
 			<div className="card-body w-full overflow-auto p-0">
 				<Plot
 					className="h-full w-full"
@@ -57,7 +31,7 @@ export default function ForecastChart({ lat, long }: { lat: number | undefined; 
 							type: "bar",
 							x: forecast.map((forecast) => forecast.time),
 							y: forecast.map((forecast) => forecast.temp),
-							name: "Temperature",
+							name: "Temperature (°C)",
 
 							// dull orange
 							marker: { color: "#FFA500" },
@@ -65,7 +39,7 @@ export default function ForecastChart({ lat, long }: { lat: number | undefined; 
 						{
 							x: forecast.map((forecast) => forecast.time),
 							y: forecast.map((forecast) => forecast.feels_like),
-							name: "Feels Like",
+							name: "Feels Like (°C)",
 						},
 					]}
 					config={{ responsive: true, displayModeBar: false }}
@@ -85,6 +59,9 @@ export default function ForecastChart({ lat, long }: { lat: number | undefined; 
 						legend: {
 							orientation: "h",
 							yanchor: "bottom",
+							font: {
+								color: "gray",
+							},
 							y: 1.02,
 							xanchor: "right",
 							x: 1,
@@ -92,6 +69,7 @@ export default function ForecastChart({ lat, long }: { lat: number | undefined; 
 						yaxis: {
 							showgrid: true,
 							zeroline: false,
+							gridcolor: "rgba(255,255,255,0.1)",
 							showticklabels: true,
 							range: [
 								Math.min(...forecast.map((forecast) => forecast.feels_like)) - 3,
