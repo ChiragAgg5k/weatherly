@@ -1,7 +1,8 @@
 "use client";
+import { WeatherData } from "@/app/types/weather";
 import { useChat } from "ai/react";
 
-export default function ChatBot({ weather }: { weather: any }) {
+export default function ChatBot({ weather }: { weather: WeatherData | undefined }) {
 	const { messages, input, handleInputChange, handleSubmit } = useChat({
 		initialMessages: [
 			{
@@ -10,6 +11,9 @@ export default function ChatBot({ weather }: { weather: any }) {
 				content: `Hello there resident of ${weather ? weather.name : "... "}! Ask me anything about the weather.`,
 			},
 		],
+		body: {
+			weather: weather?.main,
+		},
 	});
 
 	return (
