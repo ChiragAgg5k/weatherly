@@ -1,0 +1,11 @@
+{
+	"depcheck": {
+		"ignoreMatches": [
+			"prettier-plugin-tailwindcss",
+			"postcss",
+			"autoprefixer",
+			"@types/react-dom",
+			"@types/node"
+		]
+	}
+}
