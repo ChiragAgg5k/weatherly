@@ -8,10 +8,12 @@ import { getCookie, setCookie } from "cookies-next";
 import { Forecast, OtherForecast, WeatherData, WindForecast } from "./types/weather";
 import OtherForecastChart from "@/components/OtherForecastChart";
 import WindData from "@/components/WindData";
+import NavBar from "@/components/NavBar";
 
 export default function Home() {
 	const [lat, setLat] = useState<number | undefined>(0);
 	const [long, setLong] = useState<number | undefined>(0);
+	const [appearance, setAppearance] = useState<"light" | "dark">("dark");
 
 	const [weather, setWeather] = useState<WeatherData | undefined>(undefined);
 
@@ -100,11 +102,12 @@ export default function Home() {
 		<main className="">
 			<ChatBot weather={weather} />
 
+			<NavBar setAppearance={setAppearance} />
 			<div className="m-8 grid auto-rows-[192px] grid-cols-1 sm:grid-cols-3 sm:gap-4">
 				<Weather weather={weather} />
-				<ForecastChart forecast={forecast} />
-				<OtherForecastChart otherForecast={otherforecast} />
-				<WindData windForecast={windForecast} />
+				<ForecastChart forecast={forecast} appearance={appearance} />
+				<OtherForecastChart otherForecast={otherforecast} appearance={appearance} />
+				<WindData windForecast={windForecast} appearance={appearance} />
 			</div>
 		</main>
 	);

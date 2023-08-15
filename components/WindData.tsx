@@ -13,7 +13,13 @@ const Plot = dynamic(() => import("react-plotly.js"), {
 		</div>
 	),
 });
-export default function WindData({ windForecast }: { windForecast: WindForecast[] | undefined }) {
+export default function WindData({
+	windForecast,
+	appearance,
+}: {
+	windForecast: WindForecast[] | undefined;
+	appearance: "light" | "dark";
+}) {
 	return (
 		<div className="bordered card glass row-span-2 mb-20 sm:mb-0">
 			{windForecast && windForecast[0] ? (
@@ -52,6 +58,15 @@ export default function WindData({ windForecast }: { windForecast: WindForecast[
 									visible: true,
 									range: [0, 6],
 								},
+								angularaxis: {
+									visible: true,
+									rotation: 90,
+									direction: "clockwise",
+									tickmode: "array",
+									tickvals: [0, 45, 90, 135, 180, 225, 270, 315],
+									ticktext: ["N", "NE", "E", "SE", "S", "SW", "W", "NW"],
+									color: appearance === "dark" ? "lightgray" : "#2E2E2E",
+								},
 							},
 							paper_bgcolor: "rgba(0,0,0,0)",
 							plot_bgcolor: "rgba(0,0,0,0)",
@@ -64,7 +79,7 @@ export default function WindData({ windForecast }: { windForecast: WindForecast[
 						}}
 						config={{ responsive: true, displayModeBar: false }}
 					/>
-					<div className="mb-5 ml-5">
+					<div className="mb-4 ml-5 mt-2">
 						<p>
 							<strong>Current Wind Speed:</strong> {windForecast[0].speed} m/s
 						</p>

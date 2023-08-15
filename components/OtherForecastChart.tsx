@@ -15,7 +15,13 @@ const Plot = dynamic(() => import("react-plotly.js"), {
 	),
 });
 
-export default function OtherForecastChart({ otherForecast }: { otherForecast: OtherForecast[] }) {
+export default function OtherForecastChart({
+	otherForecast,
+	appearance,
+}: {
+	otherForecast: OtherForecast[];
+	appearance: "dark" | "light";
+}) {
 	const [selected, setSelected] = useState<"pressure" | "humidity" | "temp_min" | "temp_max">("humidity");
 
 	return (
@@ -101,7 +107,7 @@ export default function OtherForecastChart({ otherForecast }: { otherForecast: O
 					config={{ responsive: true, displayModeBar: false }}
 					layout={{
 						margin: {
-							l: 50,
+							l: 65,
 							r: 50,
 							b: 50,
 							t: 50,
@@ -116,7 +122,7 @@ export default function OtherForecastChart({ otherForecast }: { otherForecast: O
 							orientation: "h",
 							yanchor: "bottom",
 							font: {
-								color: "gray",
+								color: appearance === "dark" ? "white" : "#2E2E2E ",
 							},
 							y: 1.02,
 							xanchor: "right",
@@ -125,14 +131,15 @@ export default function OtherForecastChart({ otherForecast }: { otherForecast: O
 						yaxis: {
 							showgrid: true,
 							zeroline: false,
-							gridcolor: "rgba(255,255,255,0.1)",
+							gridcolor: appearance === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
 							showticklabels: true,
 							title: {
 								text: selected === "pressure" ? "Pressure (hPa)" : "Humidity (%)",
 								font: {
-									color: "darkgray",
+									color: appearance === "dark" ? "lightgray" : "#2E2E2E",
 								},
 							},
+							color: appearance === "dark" ? "lightgray" : "#2E2E2E",
 						},
 						paper_bgcolor: "rgba(0,0,0,0)",
 						plot_bgcolor: "rgba(0,0,0,0)",

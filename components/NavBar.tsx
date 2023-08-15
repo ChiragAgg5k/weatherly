@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { themeChange } from "theme-change";
 import Link from "next/link";
 
-export default function NavBar() {
+export default function NavBar({ setAppearance }: { setAppearance: (appearance: "light" | "dark") => void }) {
 	useEffect(() => {
 		themeChange(false);
 		// 👆 false parameter is required for react project
 	}, []);
 
 	const [theme, setTheme] = useState("business");
+	setAppearance(theme === "business" ? "dark" : "light");
 
 	return (
 		<div className="navbar bg-base-100">
@@ -28,7 +29,10 @@ export default function NavBar() {
 							checked={theme === "autumn"}
 							onChange={
 								// @ts-ignore
-								() => setTheme("autumn")
+								() => {
+									setAppearance("light");
+									setTheme("autumn");
+								}
 							}
 						/>
 					</button>
@@ -41,7 +45,10 @@ export default function NavBar() {
 							checked={theme === "autumn"}
 							onChange={
 								// @ts-ignore
-								() => setTheme("business")
+								() => {
+									setAppearance("dark");
+									setTheme("business");
+								}
 							}
 						/>
 					</button>

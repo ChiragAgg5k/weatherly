@@ -20,7 +20,13 @@ const Plot = dynamic(() => import("react-plotly.js"), {
 	),
 });
 
-export default function ForecastChart({ forecast }: { forecast: Forecast[] }) {
+export default function ForecastChart({
+	forecast,
+	appearance,
+}: {
+	forecast: Forecast[];
+	appearance: "light" | "dark";
+}) {
 	return (
 		<div className="bordered card glass col-span-2 mb-4 sm:mb-0">
 			<div className="card-body w-full overflow-auto p-0">
@@ -60,7 +66,7 @@ export default function ForecastChart({ forecast }: { forecast: Forecast[] }) {
 							orientation: "h",
 							yanchor: "bottom",
 							font: {
-								color: "gray",
+								color: appearance === "dark" ? "lightgray" : "#2E2E2E",
 							},
 							y: 1.02,
 							xanchor: "right",
@@ -69,8 +75,9 @@ export default function ForecastChart({ forecast }: { forecast: Forecast[] }) {
 						yaxis: {
 							showgrid: true,
 							zeroline: false,
-							gridcolor: "rgba(255,255,255,0.1)",
+							gridcolor: appearance === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
 							showticklabels: true,
+							color: appearance === "dark" ? "lightgray" : "#2E2E2E",
 							range: [
 								Math.min(...forecast.map((forecast) => forecast.feels_like)) - 3,
 								Math.max(...forecast.map((forecast) => forecast.feels_like)) + 3,
