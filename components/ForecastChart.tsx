@@ -79,7 +79,7 @@ export default function ForecastChart({
 							showticklabels: true,
 							color: appearance === "dark" ? "lightgray" : "#2E2E2E",
 							range: [
-								Math.min(...forecast.map((forecast) => forecast.feels_like)) - 3,
+								Math.min(...forecast.map((forecast) => forecast.temp)) - 3,
 								Math.max(...forecast.map((forecast) => forecast.feels_like)) + 3,
 							],
 						},

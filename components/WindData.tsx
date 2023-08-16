@@ -54,6 +54,7 @@ export default function WindData({
 						]}
 						layout={{
 							polar: {
+								bgcolor: appearance === "dark" ? "rgba(0,0,0,0.2)" : "rgba(0,0,0,0.05)",
 								radialaxis: {
 									visible: true,
 									range: [0, 6],
