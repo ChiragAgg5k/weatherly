@@ -57,7 +57,7 @@ export default function Home() {
 			.then((weather) => {
 				setWeather(weather);
 			})
-			.catch((error) => {
+			.catch(() => {
 				setWeather(undefined);
 			});
 	}, [lat, long]);
@@ -95,12 +95,12 @@ export default function Home() {
 					setWindForecast((windForecast) => [...windForecast, { speed, deg, gust, time }]);
 				}
 			})
-			.catch((error) => {});
+			.catch(() => {});
 	}, [lat, long]);
 
 	return (
 		<main className="">
-			<ChatBot weather={weather} />
+			<ChatBot weather={weather} forecast={forecast} />
 
 			<NavBar setAppearance={setAppearance} />
 			<div className="m-8 grid auto-rows-[192px] grid-cols-1 sm:grid-cols-3 sm:gap-4">

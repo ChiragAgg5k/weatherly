@@ -2,7 +2,7 @@
 import { WeatherData } from "@/app/types/weather";
 import { useChat } from "ai/react";
 
-export default function ChatBot({ weather }: { weather: WeatherData | undefined }) {
+export default function ChatBot({ weather, forecast }: { weather: WeatherData | undefined, forecast: any }) {
 	const { messages, input, handleInputChange, handleSubmit } = useChat({
 		initialMessages: [
 			{
@@ -13,6 +13,8 @@ export default function ChatBot({ weather }: { weather: WeatherData | undefined 
 		],
 		body: {
 			weather: weather?.main,
+			forecast: forecast,
+			wind: weather?.wind,
 		},
 	});
 
