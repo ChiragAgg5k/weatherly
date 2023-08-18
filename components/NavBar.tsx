@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { themeChange } from "theme-change";
 import Link from "next/link";
 
+// eslint-disable-next-line no-unused-vars
 export default function NavBar({ setAppearance }: { setAppearance: (appearance: "light" | "dark") => void }) {
 	useEffect(() => {
 		themeChange(false);

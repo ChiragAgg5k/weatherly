@@ -1,6 +1,5 @@
-import { WeatherData, WindForecast } from "@/app/types/weather";
+import { WindForecast } from "@/app/types/weather";
 import dynamic from "next/dynamic";
-import ForecastChart from "./ForecastChart";
 
 const Plot = dynamic(() => import("react-plotly.js"), {
 	ssr: false,
